@@ -1,61 +1,65 @@
 package banking;
 
 import java.util.LinkedHashMap;
-import java.util.Random;
 
 /**
  * Private Variables:<br>
  * {@link #accounts}: List&lt;Long, Account&gt;
  */
 public class Bank implements BankInterface {
-	private LinkedHashMap<Long, Account> accounts;
+	private LinkedHashMap<Long, Account> accounts; // object reference
 
 	public Bank() {
 		// complete the function
-		this.accounts = new LinkedHashMap<>();
+		this.accounts = new LinkedHashMap<>(); // memory
 	}
 
-	private Account getAccount(Long accountNumber) {
+	public Account getAccount(Long accountNumber) {
 		// complete the function
-		// return null;
-		return accounts.get(accountNumber);
+		return this.accounts.get(accountNumber);
 	}
 
+	@Override
 	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
 		// complete the function
 		// return -1L;
-		Long accountNumber = (long) accounts.values().size() + 1;
-		CommercialAccount commercialAccount = new CommercialAccount(company, accountNumber, pin, startingDeposit);
-		accounts.put(accountNumber, commercialAccount);
-		return accountNumber;
+		Long newAccountId = (long) accounts.size() + 1;
+		CommercialAccount commercialAccount = new CommercialAccount(company, newAccountId, pin, startingDeposit);
+		accounts.put(newAccountId, commercialAccount);
+		return newAccountId;
 	}
 
+	@Override
 	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {
 		// complete the function
-		Long accountNumber = (long) accounts.values().size() + 1;
-		ConsumerAccount consumerAccount = new ConsumerAccount(person, accountNumber, pin, startingDeposit);
-		accounts.put(accountNumber, consumerAccount);
-		return accountNumber;
+		Long newAccountId = (long) accounts.size() + 1;
+		ConsumerAccount consumerAccount = new ConsumerAccount(person, newAccountId, pin, startingDeposit);
+		accounts.put(newAccountId, consumerAccount);
+		return newAccountId;
 	}
 
+	@Override
 	public boolean authenticateUser(Long accountNumber, int pin) {
 		// complete the function
 		// return true;
-		return getAccount(accountNumber).getPin() == pin;
+		return this.getAccount(accountNumber).validatePin(pin);
 	}
 
+	@Override
 	public double getBalance(Long accountNumber) {
 		// complete the function
-		return getAccount(accountNumber).getBalance();
+		return this.getAccount(accountNumber).getBalance();
 	}
 
+	@Override
 	public void credit(Long accountNumber, double amount) {
 		// complete the function
-		getAccount(accountNumber).creditAccount(amount);
+		this.getAccount(accountNumber).creditAccount(amount);
 	}
 
+	@Override
 	public boolean debit(Long accountNumber, double amount) {
 		// complete the function
-		return getAccount(accountNumber).debitAccount(amount);
+		return this.getAccount(accountNumber).debitAccount(amount);
 	}
 }

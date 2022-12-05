@@ -3,6 +3,7 @@ package banking;
 public class Person extends AccountHolder {
 	private String firstName;
 	private String lastName;
+	// private int idNumber;
 
 	public Person(String firstName, String lastName, int idNumber) {
 		// complete the function
@@ -13,13 +14,11 @@ public class Person extends AccountHolder {
 
 	public String getFirstName() {
 		// complete the function
-		// return null;
 		return this.firstName;
 	}
 
 	public String getLastName() {
 		// complete the function
-		// return null;
 		return this.lastName;
 	}
 }

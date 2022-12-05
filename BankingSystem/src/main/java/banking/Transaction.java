@@ -26,23 +26,23 @@ public class Transaction implements TransactionInterface {
 		if (!bank.authenticateUser(accountNumber, attemptedPin)) {
 			throw new Exception();
 		}
-		this.accountNumber = accountNumber;
 		this.bank = bank;
+		this.accountNumber = accountNumber;
 	}
 
 	public double getBalance() {
 		// complete the function
-		// return -1;
-		return bank.getBalance(this.accountNumber);
+		return this.bank.getBalance(this.accountNumber);
 	}
 
 	public void credit(double amount) {
 		// complete the function
-		bank.credit(this.accountNumber, amount);
+		this.bank.getAccount(this.accountNumber).creditAccount(amount);
 	}
 
 	public boolean debit(double amount) {
 		// complete the function
-		return bank.debit(this.accountNumber, amount);
+		// return true;
+		return this.bank.getAccount(this.accountNumber).debitAccount(amount);
 	}
 }

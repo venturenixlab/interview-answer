@@ -10,7 +10,7 @@ package banking;
  * {@link #pin}: int<br>
  * {@link #balance}: double
  */
-public abstract class Account {
+public abstract class Account implements AccountInterface {
 	private AccountHolder accountHolder;
 	private Long accountNumber;
 	private int pin;
@@ -24,52 +24,51 @@ public abstract class Account {
 		this.balance = startingDeposit;
 	}
 
+	@Override
 	public AccountHolder getAccountHolder() {
 		// complete the function
 		// return null;
 		return this.accountHolder;
 	}
 
+	@Override
 	public boolean validatePin(int attemptedPin) {
 		// complete the function
-		// return true;
 		return attemptedPin == this.pin;
 	}
 
+	@Override
 	public double getBalance() {
 		// complete the function
-		// return -1;
 		return this.balance;
 	}
 
+	@Override
 	public double getPin() {
 		// complete the function
-		// return -1;
 		return this.pin;
 	}
 
+	@Override
 	public Long getAccountNumber() {
 		// complete the function
-		// return -1L;
 		return this.accountNumber;
 	}
 
+	@Override
 	public void creditAccount(double amount) {
 		// complete the function
-		// this.balance =
-		// BigDecimal.valueOf(balance).add(BigDecimal.valueOf(amount)).doubleValue();
-		this.balance += amount;
+		// BigDecimal
+		this.balance += amount; // bug, double + double
 	}
 
+	@Override
 	public boolean debitAccount(double amount) {
 		// complete the function
-		// return true;
 		if (amount > this.balance) {
 			return false;
 		}
-		// this.balance =
-		// BigDecimal.valueOf(balance).subtract(BigDecimal.valueOf(amount)).doubleValue();
-		this.balance -= amount;
+		this.balance -= amount; // bug, double - double
 		return true;
 	}
 }

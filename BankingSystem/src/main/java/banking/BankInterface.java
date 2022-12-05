@@ -40,7 +40,7 @@ public interface BankInterface {
 
 	/**
 	 * @param accountNumber The account number for the transaction.
-	 * @param amount The amount of money being deposited.
+	 * @param amount        The amount of money being deposited.
 	 */
 	public void credit(Long accountNumber, double amount);
 
@@ -50,4 +50,10 @@ public interface BankInterface {
 	 * @return true if amount could be withdrawn; otherwise, return false.
 	 */
 	public boolean debit(Long accountNumber, double amount);
+
+	/**
+	 * @param accountNumber The account number for the transaction.
+	 * @return true if the account can be found by the accountNumber
+	 */
+	Account getAccount(Long accountNumber);
 }

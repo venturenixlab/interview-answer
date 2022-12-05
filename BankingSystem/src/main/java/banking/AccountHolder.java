@@ -16,7 +16,9 @@ public abstract class AccountHolder {
 	 */
 	public int getIdNumber() {
 		// complete the function
-		// return -1;
 		return this.idNumber;
 	}
+
+	// public abstract int getSomething();
+
 }

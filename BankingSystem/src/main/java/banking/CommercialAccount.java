@@ -1,5 +1,6 @@
 package banking;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class CommercialAccount extends Account {
 	public CommercialAccount(Company company, Long accountNumber, int pin, double startingDeposit) {
 		// complete the function
 		super(company, accountNumber, pin, startingDeposit);
+		authorizedUsers = new ArrayList<>();
 	}
 
 	/**
@@ -33,6 +35,6 @@ public class CommercialAccount extends Account {
 	public boolean isAuthorizedUser(Person person) {
 		// complete the function
 		// return true;
-		return authorizedUsers.contains(person);
+		return authorizedUsers.contains(person); // if person == null?
 	}
 }

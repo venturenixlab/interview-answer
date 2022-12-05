@@ -36,4 +36,9 @@ public interface AccountInterface {
 	 * @return true if amount could be withdrawn; otherwise, return false.
 	 */
 	public boolean debitAccount(double amount);
+
+	/**
+	 * {@link Account#pin}.
+	 */
+	double getPin();
 }
