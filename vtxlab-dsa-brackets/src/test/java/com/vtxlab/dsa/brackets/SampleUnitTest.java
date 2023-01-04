@@ -1,4 +1,4 @@
-package com.vtxlab.dsa.bracket;
+package com.vtxlab.dsa.brackets;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class SampleUnitTest {
     List<String> results = Solution.generateBrackets(1, bracketCharArray);
     List<String> answers = Arrays.asList("()");
     assertNotNull(results);
-    assertEquals(1, results.size());
+    assertEquals(results.size(), 1);
     assertTrue(results.containsAll(answers));
   }
 
@@ -33,7 +33,7 @@ public class SampleUnitTest {
     List<String> results = Solution.generateBrackets(2, bracketCharArray);
     List<String> answers = Arrays.asList("()()", "(())");
     assertNotNull(results);
-    assertEquals(2, results.size());
+    assertEquals(results.size(), 2);
     assertTrue(results.containsAll(answers));
   }
 
@@ -43,7 +43,7 @@ public class SampleUnitTest {
     List<String> answers = Arrays.asList("()()()", "(()())", "((()))", "()(())",
         "(())()");
     assertNotNull(results);
-    assertEquals(5, results.size());
+    assertEquals(results.size(), 5);
     assertTrue(results.containsAll(answers));
   }
 
@@ -51,63 +51,63 @@ public class SampleUnitTest {
   public void _04_generate_four_brackets() {
     List<String> results = Solution.generateBrackets(4, bracketCharArray);
     assertNotNull(results);
-    assertEquals(14, results.size());
+    assertEquals(results.size(), 14);
   }
 
   @Test
   public void _05_generate_five_brackets() {
     List<String> results = Solution.generateBrackets(5, bracketCharArray);
     assertNotNull(results);
-    assertEquals(42, results.size());
+    assertEquals(results.size(), 42);
   }
 
   @Test
   public void _06_generate_six_brackets() {
     List<String> results = Solution.generateBrackets(6, bracketCharArray);
     assertNotNull(results);
-    assertEquals(132, results.size());
+    assertEquals(results.size(), 132);
   }
 
   @Test
   public void _07_generate_seven_brackets() {
     List<String> results = Solution.generateBrackets(7, bracketCharArray);
     assertNotNull(results);
-    assertEquals(429, results.size());
+    assertEquals(results.size(), 429);
   }
 
   @Test
   public void _08_generate_eight_brackets() {
     List<String> results = Solution.generateBrackets(8, bracketCharArray);
     assertNotNull(results);
-    assertEquals(1430, results.size());
+    assertEquals(results.size(), 1430);
   }
 
   @Test
   public void _09_generate_nine_brackets() {
     List<String> results = Solution.generateBrackets(9, bracketCharArray);
     assertNotNull(results);
-    assertEquals(4862, results.size());
+    assertEquals(results.size(), 4862);
   }
 
   @Test
   public void _10_generate_ten_brackets() {
     List<String> results = Solution.generateBrackets(10, bracketCharArray);
     assertNotNull(results);
-    assertEquals(16796, results.size());
+    assertEquals(results.size(), 16796);
   }
 
   @Test
   public void _11_generate_eleven_brackets() {
     List<String> results = Solution.generateBrackets(11, bracketCharArray);
     assertNotNull(results);
-    assertEquals(58786, results.size());
+    assertEquals(results.size(), 58786);
   }
 
   @Test
   public void _12_generate_twelve_brackets() {
     List<String> results = Solution.generateBrackets(12, bracketCharArray);
     assertNotNull(results);
-    assertEquals(208012, results.size());
+    assertEquals(results.size(), 208012);
   }
 
 }

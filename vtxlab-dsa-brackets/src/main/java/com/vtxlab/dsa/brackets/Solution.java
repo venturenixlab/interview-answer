@@ -1,115 +1,66 @@
 package com.vtxlab.dsa.brackets;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// Generate valid combination of [,],(,), given input parameter n, where 1 < n < 9
-// 
+// Question:
+// Generate all valid combinations of "(" and ")",
+// given input parameter n, where 0 <= n <= 12
+//
+// Commands:
+// mvn clean install
+// mvn test
+// mvn test -Dtest="SampleUnitTest"
 public class Solution {
 
-  static final char[] bracketCharArray = new char[] { '(', ')' };
-
-  // Approach 2
-  public static boolean isBalance(String s) {
-    int openCounter = 0;
-    int closeCounter = 0;
-    for (char c : s.toCharArray()) {
-      if (c == '(')
-        openCounter++;
-      if (c == ')')
-        closeCounter++;
-    }
-    return openCounter == closeCounter;
+  public static List<String> generateBrackets(int n, char[] brackets) {
+    List<String> ans = new ArrayList<>();
+    generateCombination(n, brackets, "", ans);
+    return ans;
   }
 
-  // Approach 1
-  public static boolean isValid(String s) {
-
-    Stack<Character> input = new Stack<>();
-    for (int i = 0; i < s.length(); i++) {
-      char next = s.charAt(i);
-      switch (next) {
-        case ')' -> {
-          if (input.isEmpty() || input.pop() != '(')
-            return false;
+  public static boolean isValid(String str) {
+    Stack<Character> checker = new Stack<>();
+    for (int i = 0; i < str.length(); i++) {
+      if (str.charAt(i) == ')') { // ')'
+        if (checker.empty() || checker.pop() != '(') {
+          return false;
         }
-        default -> input.push(next);
+      } else {
+        checker.push(str.charAt(i));
       }
     }
-    return input.empty(); // Revise it to return true, when approach 2
+    return true;
+    // checker.empty() when use approach 1(generate all combinations)
   }
 
-  public static List<String> concatNextChar(List<String> strings,
-      char[] bracketArray) {
-    List<String> newStrings = new ArrayList<>();
-    for (int i = 0; i < bracketArray.length; i++) {
-      if (strings.size() == 0) {
-        newStrings.add("" + bracketArray[i]);
+  public static boolean isBalanced(String str) {
+    int openCount = 0;
+    int closeCount = 0;
+    for (int i = 0; i < str.length(); i++) {
+      switch (str.charAt(i)) {
+        case '(' -> openCount++;
+        case ')' -> closeCount++;
       }
-      for (String str : strings) {
-        newStrings.add(str + bracketArray[i]);
-      }
     }
-    return newStrings;
+    return openCount == closeCount;
   }
 
-  public static List<String> generateAllStrings(int n, char[] brackets) {
-    List<String> strings = new ArrayList<>();
-    for (int i = 0; i < n * 2; i++) { // loop n*2 times
-      strings = concatNextChar(strings, brackets);
-    }
-    return strings;
-  }
-
-  public static List<String> generateParenthesis(int n, char[] brackets) {
-    List<String> allStrings = generateAllStrings(n, brackets);
-    List<String> finalStrings = new ArrayList<>();
-    for (String str : allStrings) {
-      if (isValid(str))
-        finalStrings.add(str);
-    }
-    return finalStrings;
-  }
-
-  // Approach 2
-
-  // Recursive
-  public static void concatString(Integer n, List<String> list, String str,
-      char[] brackets) {
-
+  public static void generateCombination(int n, char[] brackets, String str, List<String> combinations) {
+    if (n == 0)
+      return;
     if (isValid(str)) {
       if (str.length() == n * 2) {
-        // System.out.println(str.charAt(str.length() - 1));
-        if (isBalance(str)) {
-          list.add(str);
+        if (isBalanced(str)) {
+          combinations.add(str);
         }
         return;
       }
-      // recursive
-      for (int i = 0; i < brackets.length; i++) {
-        concatString(n, list, str + brackets[i], brackets);
+      for (char bracket : brackets) {
+        generateCombination(n, brackets, str + bracket, combinations);
       }
     }
   }
 
-  public static List<String> generateValidBrackets(int n, char[] brackets) {
-    List<String> strings = new ArrayList<>();
-    concatString(n, strings, new String(), brackets);
-    return strings;
-  }
-
-  public static void main(String[] args) {
-    LocalDateTime startDateTime = LocalDateTime.now();
-    System.out.println(generateParenthesis(8, bracketCharArray).size());
-    System.out.println(generateValidBrackets(8, bracketCharArray).size());
-    LocalDateTime endDateTime = LocalDateTime.now();
-    System.out.println(Duration.between(startDateTime, endDateTime).getNano());
-  }
 }
-
-// method: given 2 array[] char, output -> 1 List, which has an element
-// duplicated 3 times, sort by ascii
-// ->

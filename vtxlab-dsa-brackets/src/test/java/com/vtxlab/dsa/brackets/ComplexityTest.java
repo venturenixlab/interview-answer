@@ -1,4 +1,4 @@
-package com.vtxlab.dsa.bracket;
+package com.vtxlab.dsa.brackets;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -16,6 +16,7 @@ public class ComplexityTest {
     Solution.generateBrackets(12, bracketCharArray);
     long end = System.nanoTime();
     double elapsedTime = (double) (end - start) / 1_000_000_000;
+    // Time Complexity Test should be within 1 second.
     assertTrue("Time Complexity Fail", elapsedTime < 1.0d);
   }
 
@@ -26,9 +27,10 @@ public class ComplexityTest {
     Solution.generateBrackets(12, bracketCharArray);
     long after = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage()
         .getUsed();
-    long heapSizeUsed = after - before;
-    // System.out.println(heapSizeUsed / 1024 / 1024);
-    assertTrue("Space Complexity Fail", heapSizeUsed / 1024 / 1024 < 50);
+    long heapSizeUsedInMb = (after - before) / 1024 / 1024;
+    System.out.println("heapSizeUsedInMb=" + heapSizeUsedInMb);
+    // Space Complexity Test should be within 50 MB.
+    assertTrue("Space Complexity Fail", heapSizeUsedInMb < 50);
   }
 
 }
